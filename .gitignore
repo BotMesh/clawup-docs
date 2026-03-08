@@ -1,0 +1,17 @@
+# Rust
+backend/target/
+
+# Next.js
+frontend/node_modules/
+frontend/.next/
+
+# Env
+.env
+*.local
+.DS_Store
+runtime-provisioner/runtime-provisioner
+database
+
+# 审计报告
+*审计报告*
+*审计报告*.md

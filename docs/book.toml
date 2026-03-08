@@ -1,0 +1,15 @@
+[book]
+authors = ["ClawUp Team"]
+language = "en"
+src = "src"
+title = "ClawUp Docs"
+description = "Official documentation for ClawUp"
+
+[output.html]
+default-theme = "light"
+git-repository-url = "https://github.com/botmesh-ai/clawup"
+site-url = "/"
+
+[output.html.fold]
+enable = true
+level = 1
