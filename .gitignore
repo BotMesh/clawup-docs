@@ -11,7 +11,3 @@ frontend/.next/
 .DS_Store
 runtime-provisioner/runtime-provisioner
 database
-
-# 审计报告
-*审计报告*
-*审计报告*.md
