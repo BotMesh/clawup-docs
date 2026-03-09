@@ -94,6 +94,8 @@ Claw cards also include an **Apps** button that jumps directly to this page and 
 
 Channels connect Claws to messaging platforms. They are configured during Claw creation and written into the OpenClaw runtime config. OpenClaw handles the actual connection to the messaging platform.
 
+**Credential isolation**: channel credentials (Telegram Bot Token, Feishu App ID / App Secret, etc.) are never stored in the platform database. At provision time, they are Base64-encoded into the `OPENCLAW_CONFIG_B64` environment variable, injected into the container, decoded by the bootstrap script, and written to the runtime config file inside the container. The platform does not persist or have ongoing access to these secrets — they only exist within the container environment.
+
 ### Telegram
 
 Select **Telegram** during Claw creation and provide:

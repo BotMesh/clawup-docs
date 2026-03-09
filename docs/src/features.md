@@ -50,6 +50,7 @@ ClawUp is designed around privacy-first operations.
   - Encryption at rest
   - Runtime compute encryption support
   - Full audit coverage for all Claw operations
+  - **Credential isolation**: channel credentials (Telegram Bot Token, Feishu App ID / App Secret, etc.) are never stored in the platform database. They are injected into the container environment at provision time and only exist inside the container's runtime config file. The platform does not persist or have ongoing access to these secrets.
 - Entry: platform default behavior and runtime/app configuration.
 
 ## Related Guides
