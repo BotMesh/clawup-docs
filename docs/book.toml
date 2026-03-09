@@ -7,7 +7,7 @@ description = "Official documentation for ClawUp"
 
 [output.html]
 default-theme = "light"
-git-repository-url = "https://github.com/botmesh-ai/clawup"
+git-repository-url = "https://github.com/BotMesh/clawup-docs"
 site-url = "/"
 additional-css = ["theme/clawup.css"]
 
