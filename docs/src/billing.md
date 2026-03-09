@@ -2,6 +2,14 @@
 
 ClawUp billing is designed for traceable payment operations and auditability.
 
+## Plans
+
+| Plan | Isolation | Price | Description |
+|------|-----------|-------|-------------|
+| **Basic** | Shared | $10/month | Managed containers, 1 Claw. For individual users and lightweight workloads. |
+| **Pro** | Dedicated | $30/month | Dedicated compute instance, up to 3 Claws. Compute-level isolation for teams. |
+| **Enterprise** | Confidential | Coming Soon | Confidential containers (TEE) with hardware-level memory encryption. No third party — including the platform operator and cloud provider — can access user data. For organizations with strict compliance requirements. |
+
 ## Recharge Methods
 
 - Telegram channel coupon

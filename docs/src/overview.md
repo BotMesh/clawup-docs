@@ -6,7 +6,7 @@ ClawUp is a managed OpenClaw platform focused on:
 - Claw memory inheritance (`Fork From`)
 - App-based extensibility (MCP + OpenClaw Hooks)
 - Multi-channel support (Telegram, Feishu)
-- Privacy-first and trust operations (zero data retention by default, credential isolation, encryption at rest, runtime compute encryption support, and full audit coverage)
+- Privacy-first and trust operations (zero data retention, all user data encrypted at rest, full audit coverage; Enterprise plan adds confidential containers with hardware-level memory encryption — no third party can access user data)
 
 Core management surfaces:
 

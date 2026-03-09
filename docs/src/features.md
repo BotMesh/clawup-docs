@@ -47,11 +47,22 @@ ClawUp is designed around privacy-first operations.
 - Value: safer baseline behavior for sensitive data and runtime workloads.
 - Core trust and privacy capabilities:
   - Zero data retention by default
-  - Encryption at rest
-  - Runtime compute encryption support
+  - **Encryption at rest**: all user information written to disk is encrypted — including channel credentials, conversation data, and runtime state
   - Full audit coverage for all Claw operations
-  - **Credential isolation**: channel credentials (Telegram Bot Token, Feishu App ID / App Secret, etc.) are never stored in the platform database. They are injected into the container environment at provision time and only exist inside the container's runtime config file. The platform does not persist or have ongoing access to these secrets.
+  - **Confidential computing (Enterprise)**: the Enterprise plan runs Claws inside confidential containers (TEE — Trusted Execution Environment). Data in memory is hardware-encrypted during execution, ensuring that no third party — including the platform operator, cloud provider, or infrastructure administrator — can access user data. See [Plans & Isolation](#plans--isolation) below.
 - Entry: platform default behavior and runtime/app configuration.
+
+## 7. Plans & Isolation
+
+ClawUp offers three plans with increasing levels of runtime isolation:
+
+| Plan | Isolation | Description |
+|------|-----------|-------------|
+| **Basic** | Shared | Managed containers with shared runtime. Suitable for individual users and lightweight workloads. |
+| **Pro** | Dedicated | Dedicated compute instance per Claw. Compute-level isolation for teams needing stronger separation. |
+| **Enterprise** | Confidential | **Confidential container** (TEE) with hardware-level memory encryption. Data is protected during execution — no third party, including the platform operator and cloud provider, can access user data, conversation content, or credentials. Designed for organizations with strict compliance and data sovereignty requirements. |
+
+All plans share the same storage security guarantee: any user information written to disk is encrypted.
 
 ## Related Guides
 
