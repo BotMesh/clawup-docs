@@ -9,6 +9,7 @@ description = "Official documentation for ClawUp"
 default-theme = "light"
 git-repository-url = "https://github.com/botmesh-ai/clawup"
 site-url = "/"
+additional-css = ["theme/clawup.css"]
 
 [output.html.fold]
 enable = true

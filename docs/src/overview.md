@@ -5,7 +5,7 @@ ClawUp is a managed OpenClaw platform focused on:
 - One-click OpenClaw deployment
 - Claw memory inheritance (`Fork From`)
 - App-based extensibility (MCP + Webhooks)
-- Privacy-first operations (zero data retain by default)
+- Privacy-first and trust operations (zero data retention by default, encryption at rest, runtime compute encryption support, and full audit coverage)
 
 Core management surfaces:
 
