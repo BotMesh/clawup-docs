@@ -92,7 +92,7 @@ Click **Advanced** to expand these options. Defaults are auto-selected.
 
 1. Open **Apps -> Marketplace**
 2. Select the newly created Claw
-3. Install required apps (MCP or Hook)
+3. Install required apps (MCP or OpenClaw Hooks)
 4. Verify status in **Apps -> Installed**
 
-For Telegram webhook apps, use **Resync Webhook** after webhook URL/token updates.
+For Telegram channels, use **Resync Webhook** in **Apps -> Installed** after webhook URL/token updates.

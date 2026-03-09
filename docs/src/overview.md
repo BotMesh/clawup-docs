@@ -4,18 +4,20 @@ ClawUp is a managed OpenClaw platform focused on:
 
 - One-click OpenClaw deployment
 - Claw memory inheritance (`Fork From`)
-- App-based extensibility (MCP + Webhooks)
+- App-based extensibility (MCP + OpenClaw Hooks)
+- Multi-channel support (Telegram, Feishu)
 - Privacy-first and trust operations (zero data retention by default, encryption at rest, runtime compute encryption support, and full audit coverage)
 
 Core management surfaces:
 
-- **Settings -> App Registry** (admin): register MCP/Hook apps
+- **Settings -> App Registry** (admin): register MCP / OpenClaw Hooks apps
 - **Apps -> Marketplace / Installed** (user): bind apps to Claws and manage lifecycle
 - **Billing / Audits**: recharge and operational traceability
 
 Terminology:
 
-- **MCP app**: protocol-driven tool endpoint integrated into runtime.
-- **Hook app**: webhook-style endpoint integrated via hook-specific config/sync flow.
+- **MCP app**: external MCP server exposing tools that the agent can invoke during conversations.
+- **OpenClaw Hook app**: event-driven TypeScript script running inside the Gateway, triggered automatically by system events (messages, commands, sessions, etc.).
+- **Channel**: messaging platform connection (Telegram, Feishu) configured during Claw creation.
 
 Use this docs site as the single entry for product usage and operations.

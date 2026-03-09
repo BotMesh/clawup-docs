@@ -16,9 +16,9 @@ You can create a new Claw from an existing backup/version to reuse prior state a
 - Value: rapid cloning for experimentation, staged rollout, or recovery.
 - Entry: set **Restore Source = Fork From Existing Claw** in the create flow.
 
-## 3. Unified App Model (MCP + Hook)
+## 3. Unified App Model (MCP + OpenClaw Hooks)
 
-ClawUp uses one app model to support both MCP integrations and webhook-style integrations.
+ClawUp uses one App model to manage two kinds of OpenClaw extensions: MCP tools (agent-invoked capabilities) and OpenClaw Hooks (event-driven automation scripts). Both are registered, validated, and installed through the same workflow.
 
 - Value: consistent install and management experience across integration types.
 - Entry:
@@ -30,9 +30,8 @@ ClawUp uses one app model to support both MCP integrations and webhook-style int
 ClawUp supports multiple messaging channels out of the box. Select channels during Claw creation and the platform writes default config automatically.
 
 - Supported: Telegram (Bot Token), Feishu (App ID + App Secret).
-- Webhook apps can be re-synced when endpoint/token configuration changes.
 - Value: connect your Claw to users on their preferred platform with minimal setup.
-- Entry: channel selection in **Create Claw**; webhook resync in **Apps -> Installed**.
+- Entry: channel selection in **Create Claw**; for Telegram, webhook resync in **Apps -> Installed**.
 
 ## 5. Traceable Billing and Audits
 
@@ -56,5 +55,5 @@ ClawUp is designed around privacy-first operations.
 ## Related Guides
 
 - For a fast onboarding path, see [Quick Start](./quick-start.md).
-- For integration details, see [Apps & Webhooks](./apps-and-webhooks.md).
+- For integration details, see [Apps & Channels](./apps-and-webhooks.md).
 - For restore workflows, see [Restore & Migration](./restore-and-migration.md).

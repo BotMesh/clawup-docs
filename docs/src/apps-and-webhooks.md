@@ -1,15 +1,42 @@
-# Apps & Webhooks
+# Apps & Channels
 
-ClawUp now uses a unified **App** model for both MCP servers and Webhook integrations.
+ClawUp has two integration systems: **Apps** for extending Claw capabilities, and **Channels** for connecting Claws to messaging platforms.
 
-## Architecture
+## Apps
+
+Apps extend what a Claw can do. ClawUp uses a unified App model covering two kinds of OpenClaw extensions: **MCP** and **Hooks**. Both are managed through the same App Registry and Marketplace workflow.
+
+### MCP
+
+[MCP (Model Context Protocol)](https://docs.openclaw.ai/automation/mcp) apps expose external tools and capabilities to your Claw.
+
+- What it is: an external MCP server providing tools that the agent can call during conversations.
+- Typical endpoint: MCP HTTP/SSE endpoint.
+- Runtime behavior: bound into the Claw runtime as an MCP tool provider; tools appear in the agent's context and can be invoked by the agent.
+
+### OpenClaw Hooks
+
+[OpenClaw Hooks](https://docs.openclaw.ai/automation/hooks) are event-driven automation scripts running inside the Gateway.
+
+- What it is: lightweight TypeScript scripts triggered automatically by system events — not called by the agent, but fired by the Gateway on predefined events.
+- Supported events:
+  - **Message events** — `message:received`, `message:transcribed`, `message:preprocessed`, `message:sent`
+  - **Command events** — `command:new`, `command:reset`, `command:stop`
+  - **Session events** — `session:compact:before`, `session:compact:after`
+  - **Agent events** — `agent:bootstrap`
+  - **Gateway events** — `gateway:startup`
+- Typical use cases: session memory persistence, audit logging, bootstrap file injection, message pre/post-processing.
+- Key difference from MCP: MCP tools are invoked by the agent during reasoning; hooks execute automatically in response to system events and operate outside the agent decision loop.
+
+In App Registry, the `Type` field (MCP or Hook) controls which validation path and binding behavior are used.
+
+### App Architecture
 
 The flow is split into two layers:
 
 1. **Platform registration (admin):**
-   - Register app metadata once in **Settings -> App Registry**
-   - App type can be MCP or Hook
-   - Control status (`active` / `disabled`), endpoint, auth scheme, and visibility
+   - Register app metadata in **Settings -> App Registry**
+   - Set type (MCP or Hook), endpoint, auth scheme, and status (`active` / `disabled`)
 
 2. **Per-claw binding (user):**
    - Go to **Apps -> Marketplace**
@@ -20,23 +47,7 @@ The flow is split into two layers:
 
 After binding, manage in **Apps -> Installed**.
 
-## MCP vs Hook
-
-ClawUp uses one App model, but there are two integration styles:
-
-1. **MCP App**
-   - Purpose: expose tools/capabilities through MCP protocol.
-   - Typical endpoint: MCP HTTP/SSE endpoint.
-   - Runtime behavior: bound into your claw runtime as an MCP app.
-
-2. **Hook App**
-   - Purpose: webhook/event style integration (for example Telegram webhook workflows).
-   - Typical endpoint: HTTP webhook target.
-   - Runtime behavior: stores webhook config and executes hook-specific apply/sync flow.
-
-In App Registry, `Type` controls which validation path and binding behavior are used.
-
-## Validate Behavior
+### Validate Behavior
 
 `Validate` in App Registry is not just a ping:
 
@@ -52,9 +63,9 @@ In App Registry, `Type` controls which validation path and binding behavior are 
    - ClawUp runs a basic HTTP reachability check (`GET`).
    - Success criteria: `2xx/3xx`.
 
-If validation fails, backend returns detailed failure text (status/body/request failure), and UI now shows validation status in the App Registry table.
+If validation fails, backend returns detailed failure text (status/body/request failure), and UI shows validation status in the App Registry table.
 
-## Where To Register Apps
+### Where To Register Apps
 
 Open **Settings** and switch to **App Registry** tab.
 
@@ -68,7 +79,7 @@ Available actions:
 
 Only node admins can access App Registry.
 
-## Where Users Install Apps
+### Where Users Install Apps
 
 Open left nav **Apps**.
 
@@ -79,22 +90,23 @@ Tabs:
 
 Claw cards also include an **Apps** button that jumps directly to this page and preselects the Claw.
 
-## Telegram Webhook App
+## Channels
 
-For Telegram webhook style apps, `Add to Claw` shows extra fields:
+Channels connect Claws to messaging platforms. They are configured during Claw creation and written into the OpenClaw runtime config. OpenClaw handles the actual connection to the messaging platform.
 
-- `Bot Token / API Key`
-- `Webhook Secret`
-- `Allowed Updates` (comma-separated)
-- `Drop pending updates`
+### Telegram
 
-Then use **Validate & Install**.
+Select **Telegram** during Claw creation and provide:
 
-### Resync Webhook
+- **Bot Token** — issued by @BotFather.
 
-In **Apps -> Installed**, Telegram webhook apps have a **Resync Webhook** action.
+After the Claw starts, complete pairing in the Telegram chat: `openclaw pairing approve <CODE>`.
 
-This calls:
+#### Telegram Webhook Sync
+
+ClawUp provides a platform-level webhook sync feature for Telegram. This is separate from the App system — it registers and maintains the webhook URL with Telegram's API.
+
+In **Apps -> Installed**, Telegram channels have a **Resync Webhook** action that calls:
 
 - `POST /api/v1/bots/{id}/telegram/webhook/sync`
 
@@ -104,14 +116,16 @@ Use this when:
 - Telegram side webhook config drifted
 - token/secret rotated and you need re-apply
 
-## Feishu Channel
+### Feishu
 
-Feishu (飞书) is supported as a built-in channel. During Claw creation, select **Feishu** and provide:
+Select **Feishu** during Claw creation and provide:
 
 - **App ID** — format `cli_xxx`, from Feishu Open Platform credentials page.
 - **App Secret** — keep private; reset immediately if leaked.
 
-### Setup Steps
+Feishu uses **WebSocket (long connection)** mode by default — OpenClaw connects outbound to Feishu automatically, no webhook URL registration needed.
+
+#### Setup Steps
 
 1. Create an enterprise app on [Feishu Open Platform](https://open.feishu.cn/).
 2. Copy **App ID** and **App Secret** from the credentials page.
@@ -126,10 +140,15 @@ For full Feishu configuration reference, see [OpenClaw Feishu docs](https://docs
 
 ## Operational Recommendation
 
-Use this order for production:
+### Apps
 
-1. Admin registers app in `App Registry`
+1. Admin registers app in **App Registry**
 2. Admin validates endpoint and enables app
-3. User installs app in `Marketplace`
-4. User verifies status in `Installed`
-5. For Telegram webhook apps, run `Resync Webhook` after token/URL changes
+3. User installs app in **Marketplace**
+4. User verifies status in **Installed**
+
+### Channels
+
+1. Select channels during Claw creation and fill in credentials
+2. After Claw starts, complete pairing in chat
+3. For Telegram, run **Resync Webhook** after token/URL changes

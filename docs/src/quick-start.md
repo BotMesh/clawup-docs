@@ -11,4 +11,4 @@
 6. Configure channels and complete pairing in chat.
 7. Test chat and monitor runtime status.
 
-If you use Telegram webhook apps, verify and recover from **Apps -> Installed -> Resync Webhook**.
+If you use Telegram, verify and recover webhook sync from **Apps -> Installed -> Resync Webhook**.
