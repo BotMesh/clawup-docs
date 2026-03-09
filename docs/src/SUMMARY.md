@@ -1,7 +1,5 @@
 # Summary
 
-[ClawUp Console](https://clawup.org)
-
 - [Overview](./overview.md)
 - [Core Features](./features.md)
 - [Quick Start](./quick-start.md)

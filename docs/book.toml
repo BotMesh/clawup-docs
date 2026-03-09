@@ -10,6 +10,7 @@ default-theme = "light"
 git-repository-url = "https://github.com/BotMesh/clawup-docs"
 site-url = "/"
 additional-css = ["theme/clawup.css"]
+additional-js = ["theme/clawup.js"]
 
 [output.html.fold]
 enable = true

@@ -142,6 +142,22 @@ pre,
   background: color-mix(in srgb, var(--sidebar-active) 14%, transparent);
 }
 
+.sidebar-console-link {
+  display: block;
+  padding: 8px 16px 12px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--sidebar-spacer);
+  font-family: var(--claw-font-body);
+  font-size: 0.85em;
+  font-weight: 500;
+  color: var(--links);
+  text-decoration: none;
+}
+
+.sidebar-console-link:hover {
+  filter: brightness(1.05);
+}
+
 #content {
   max-width: 860px;
 }
