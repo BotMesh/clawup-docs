@@ -64,6 +64,7 @@ Flow:
 2. Upload tar directly to OSS via signed URL.
 3. Complete upload confirmation.
 4. In **Create Claw**:
+   - expand the **Advanced** section
    - choose **Restore Source = Restore From Uploaded Backup**
    - select uploaded `upload_id`
    - select uploaded `version_id`

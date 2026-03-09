@@ -25,12 +25,14 @@ ClawUp uses one app model to support both MCP integrations and webhook-style int
   - Admin: **Settings -> App Registry**
   - User: **Apps -> Marketplace / Installed**
 
-## 4. Built-In Webhook Operations (Telegram Included)
+## 4. Multi-Channel Support (Telegram, Feishu)
 
-Webhook apps can be installed per Claw and re-synced when endpoint/token configuration changes.
+ClawUp supports multiple messaging channels out of the box. Select channels during Claw creation and the platform writes default config automatically.
 
-- Value: lower operational risk when webhook state drifts.
-- Entry: **Apps -> Installed -> Resync Webhook** (for Telegram webhook apps).
+- Supported: Telegram (Bot Token), Feishu (App ID + App Secret).
+- Webhook apps can be re-synced when endpoint/token configuration changes.
+- Value: connect your Claw to users on their preferred platform with minimal setup.
+- Entry: channel selection in **Create Claw**; webhook resync in **Apps -> Installed**.
 
 ## 5. Traceable Billing and Audits
 

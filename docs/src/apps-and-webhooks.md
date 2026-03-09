@@ -104,6 +104,26 @@ Use this when:
 - Telegram side webhook config drifted
 - token/secret rotated and you need re-apply
 
+## Feishu Channel
+
+Feishu (飞书) is supported as a built-in channel. During Claw creation, select **Feishu** and provide:
+
+- **App ID** — format `cli_xxx`, from Feishu Open Platform credentials page.
+- **App Secret** — keep private; reset immediately if leaked.
+
+### Setup Steps
+
+1. Create an enterprise app on [Feishu Open Platform](https://open.feishu.cn/).
+2. Copy **App ID** and **App Secret** from the credentials page.
+3. Configure required permissions (messaging, file access, contact data).
+4. Enable **Bot Capability** in the app settings.
+5. Configure **Event Subscription** — select "Use long connection to receive events" (WebSocket mode) and add `im.message.receive_v1`.
+6. Publish the app and submit for approval.
+7. In ClawUp, create a Claw with Feishu channel selected, fill in App ID and App Secret.
+8. After the Claw starts, send a test message to your Feishu bot and complete pairing: `openclaw pairing approve feishu <CODE>`.
+
+For full Feishu configuration reference, see [OpenClaw Feishu docs](https://docs.openclaw.ai/channels/feishu).
+
 ## Operational Recommendation
 
 Use this order for production:
