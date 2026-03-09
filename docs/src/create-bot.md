@@ -33,6 +33,20 @@ The platform validates the OpenClaw config before applying it.
 - Security note: treat it as secret material and rotate it if exposed.
 - Common issue: invalid or expired key leading to upstream auth errors.
 
+Get your API key from the provider's dashboard:
+
+| Provider | API Key Page |
+|----------|-------------|
+| OpenAI | [platform.openai.com/api-keys](https://platform.openai.com/api-keys) |
+| Anthropic | [console.anthropic.com/settings/keys](https://console.anthropic.com/settings/keys) |
+| Google AI | [aistudio.google.com/app/apikey](https://aistudio.google.com/app/apikey) |
+| Mistral | [console.mistral.ai/api-keys](https://console.mistral.ai/api-keys/) |
+| DeepSeek | [platform.deepseek.com/api_keys](https://platform.deepseek.com/api_keys) |
+| xAI | [console.x.ai](https://console.x.ai/) |
+| Groq | [console.groq.com/keys](https://console.groq.com/keys) |
+| Cohere | [dashboard.cohere.com/api-keys](https://dashboard.cohere.com/api-keys) |
+| OpenRouter | [openrouter.ai/settings/keys](https://openrouter.ai/settings/keys) |
+
 ### 4. Runtime Type
 
 - What it is: runtime isolation mode for this Claw.

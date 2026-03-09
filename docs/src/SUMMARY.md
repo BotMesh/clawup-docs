@@ -7,6 +7,6 @@
     - [Apps & Webhooks](./apps-and-webhooks.md)
     - [Restore & Migration](./restore-and-migration.md)
 - [Billing](./billing.md)
-- [Advances]()
+- [Advanced]()
     - [Claw Connect](./claw-connect.md)
 - [FAQ](./faq.md)
