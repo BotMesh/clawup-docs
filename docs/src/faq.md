@@ -41,3 +41,52 @@ If an app is missing in Marketplace, contact your node admin to publish/enable i
 4. Make sure the Feishu app has been **published and approved**.
 5. Check Claw runtime logs for connection errors.
 6. If pairing is needed, send a message to the Feishu bot and approve with: `openclaw pairing approve feishu <CODE>`.
+
+## Feishu bot receives messages but does not reply (error 99991672)
+
+This means the Feishu app is missing required API permissions. The bot can receive messages via WebSocket but cannot call Feishu APIs to send replies.
+
+**Required permissions** — go to **Feishu Open Platform → App Console → Permissions & Scopes** and enable:
+
+| Permission | Purpose | Notes |
+|------------|---------|-------|
+| `im:message:send_as_bot` | Send messages as bot | **Required.** Usually auto-approved, no admin review needed. |
+| `contact:contact.base:readonly` | Read basic contact info | Needed for resolving sender identity. |
+
+**Common mistakes:**
+
+- **Opened `im:message` instead of `im:message:send_as_bot`** — `im:message` is a legacy scope that may require admin approval and takes longer to activate. Use `im:message:send_as_bot` instead.
+- **Permissions added but app not re-published** — Some permission changes require creating a new app version and publishing it. Check if the permission status shows "已开通" (Activated) vs "未开通" (Not activated).
+- **Permissions activated but pod not restarted** — The Feishu SDK caches its access token. After permission changes, restart the Claw (or wait for token refresh) for the new scopes to take effect.
+
+**Troubleshooting steps:**
+
+1. Check Claw runtime logs for `99991672` errors. The error message lists which scopes are missing.
+2. Open the permission link in the error message — it goes directly to the correct permissions page.
+3. Enable the missing permissions.
+4. Verify status shows "已开通".
+5. Restart the Claw.
+6. Send a test message to the Feishu bot.
+
+## Feishu bot shows `TypeError: Invalid URL`
+
+The Feishu SDK requires a fully-qualified domain with `https://` scheme. If logs show:
+
+```
+TypeError: Invalid URL
+input: 'open.feishu.cn/open-apis/...'
+```
+
+This means the `domain` field in the OpenClaw channel config is missing the protocol prefix. The correct value is `https://open.feishu.cn`, not `open.feishu.cn`.
+
+ClawUp automatically sets the correct domain for new Claws. If you encounter this on an existing Claw, recreate it or manually fix the config inside the container:
+
+```json
+{
+  "channels": {
+    "feishu": {
+      "domain": "https://open.feishu.cn"
+    }
+  }
+}
+```
