@@ -23,12 +23,14 @@ Most users only need the main section. The platform auto-selects sensible defaul
 - What it is: the provider + model combination used by this Claw.
 - When to set: always required.
 - How to choose: use the searchable model picker — type to filter by model name or provider. Models are grouped by provider (OpenAI, Anthropic, Google, etc.) with OpenRouter models sub-grouped by upstream provider.
+- **Free plan**: model is pre-selected and the picker is disabled. The platform chooses a default model via OpenRouter.
 - Common issue: unsupported or misspelled model name; provider and API key mismatch.
 
 ### 3. API Key
 
 - What it is: credential used by the runtime to call the selected provider.
-- When to set: always required.
+- When to set: required for Basic, Pro, and Enterprise plans.
+- **Free plan**: no API key needed — the platform provisions an OpenRouter key automatically.
 - Security note: treat it as secret material and rotate it if exposed.
 - Common issue: invalid or expired key leading to upstream auth errors.
 

@@ -1,4 +1,4 @@
-# Core Features
+# Features
 
 This chapter introduces ClawUp's core product capabilities and where to use them in the console.
 
@@ -54,13 +54,14 @@ ClawUp is designed around privacy-first operations.
 
 ## 7. Plans & Isolation
 
-ClawUp offers three plans with increasing levels of runtime isolation:
+ClawUp offers four plans with increasing levels of runtime isolation:
 
-| Plan | Isolation | Description |
-|------|-----------|-------------|
-| **Basic** | Shared | Managed containers with shared runtime. Suitable for individual users and lightweight workloads. |
-| **Pro** | Dedicated | Dedicated compute instance per Claw. Compute-level isolation for teams needing stronger separation. |
-| **Enterprise** | Confidential | **Confidential container** (TEE) with hardware-level memory encryption. Data is protected during execution — no third party, including the platform operator and cloud provider, can access user data, conversation content, or credentials. Designed for organizations with strict compliance and data sovereignty requirements. |
+| Plan | Isolation | Price | Description |
+|------|-----------|-------|-------------|
+| **Free** | Shared | $0 | 7-day free trial via OpenRouter. No API key needed — the platform provisions one automatically. Model is pre-selected and locked. One Claw per user. |
+| **Basic** | Shared | $10/month | Managed containers with shared runtime. Bring your own API key. Suitable for individual users and lightweight workloads. |
+| **Pro** | Dedicated (ECS 2c4g) | $30/month | Dedicated compute instance per Claw. Compute-level isolation and advanced mode enabled. For growing teams needing stronger separation. |
+| **Enterprise** | Confidential (TEE) | Coming Soon | **Confidential container** with hardware-level memory encryption. Data is protected during execution — no third party, including the platform operator and cloud provider, can access user data, conversation content, or credentials. For organizations with strict compliance and data sovereignty requirements. |
 
 All plans share the same storage security guarantee: any user information written to disk is encrypted.
 

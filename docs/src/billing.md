@@ -6,9 +6,18 @@ ClawUp billing is designed for traceable payment operations and auditability.
 
 | Plan | Isolation | Price | Description |
 |------|-----------|-------|-------------|
-| **Basic** | Shared | $10/month | Managed containers, 1 Claw. For individual users and lightweight workloads. |
-| **Pro** | Dedicated | $30/month | Dedicated compute instance, up to 3 Claws. Compute-level isolation for teams. |
-| **Enterprise** | Confidential | Coming Soon | Confidential containers (TEE) with hardware-level memory encryption. No third party — including the platform operator and cloud provider — can access user data. For organizations with strict compliance requirements. |
+| **Free** | Shared | $0 | 7-day free trial via OpenRouter. No API key needed — the platform provisions one automatically. Model is pre-selected and locked. One Claw per user. Designed for new users to explore the platform. |
+| **Basic** | Shared | $10/month | Managed containers with shared runtime. Bring your own API key. For individual users and lightweight workloads. |
+| **Pro** | Dedicated (ECS) | $30/month | Dedicated compute instance (ECS 2c4g) per Claw. Compute-level isolation and advanced mode enabled. For growing teams. |
+| **Enterprise** | Confidential (TEE) | Coming Soon | Confidential containers with hardware-level memory encryption. Data is protected during execution — no third party, including the platform operator and cloud provider, can access user data. For organizations with strict compliance and data sovereignty requirements. |
+
+### Free Plan Details
+
+- Available to all new accounts immediately — no payment required.
+- The platform provisions an OpenRouter API key for you automatically.
+- Model is fixed (not user-selectable) and the model picker is disabled.
+- The provisioned key and associated resources are cleaned up when the Claw is deleted.
+- After the trial period, upgrade to Basic or higher to continue.
 
 ## Recharge Methods
 

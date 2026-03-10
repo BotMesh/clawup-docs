@@ -1,7 +1,7 @@
 # Summary
 
 - [Overview](./overview.md)
-- [Core Features](./features.md)
+- [Features](./features.md)
 - [Quick Start](./quick-start.md)
     - [Create Claw](./create-bot.md)
     - [Apps & Channels](./apps-and-webhooks.md)
