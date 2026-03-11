@@ -23,25 +23,27 @@ Go to **Console → Admin → App Registry** and create a new entry:
 | **Name** | Claw Connect |
 | **Transport** | `http` |
 | **Endpoint** | The Claw Connect MCP URL, e.g. `http://claw-connect:8081/mcp` |
+| **Credential Mode** | `Platform JWT (auto)` |
 | **Auth Required** | `no` |
 | **Auth Scheme** | `none` |
 | **Status** | `active` |
 
-> **Why `auth_required=false`?** From the user's perspective, no API key is needed. The backend auto-generates a JWT credential behind the scenes (see [How Auth Works](#how-auth-works) below). Setting `auth_required=false` hides the API Key field in the install modal.
+After saving, click **Validate** — the backend will connect to the MCP endpoint, verify reachability, and automatically discover lifecycle hooks (register/unregister paths) from the server's `initialize` response.
+
+> **Credential Mode = Platform JWT** means the backend auto-generates a JWT credential for each Claw that installs this app. Users never see or handle tokens — the API Key field is hidden in the install modal.
 
 ### Backend Environment Variables
 
-The backend needs two environment variables to enable JWT auto-generation:
+The backend needs one environment variable to enable JWT auto-generation:
 
 ```env
-# The base URL of the Claw Connect service (used to detect which apps are Claw Connect)
-CLAW_CONNECT_URL=http://claw-connect:8081
-
-# Shared HMAC secret — must match the JWT_SECRET configured in Claw Connect
+# Shared HMAC secret — must match the JWT_SECRET configured in Claw Connect.
+# The env var name is derived from the App Registry ID: {ID}_JWT_SECRET (uppercase, hyphens → underscores).
+# For an app with ID "claw-connect", the env var is CLAW_CONNECT_JWT_SECRET.
 CLAW_CONNECT_JWT_SECRET=your-shared-secret-here
 ```
 
-The backend identifies Claw Connect apps by matching the app's `endpoint` against `CLAW_CONNECT_URL`. This works regardless of the App Registry ID — you can register it as `claw-connect`, `nebula`, or any other name.
+> **Note:** `CLAW_CONNECT_URL` is no longer required. The backend identifies platform JWT apps by the `credential_mode` field in the App Registry, not by URL matching.
 
 ## 3. Quick Start (User)
 
@@ -75,10 +77,11 @@ That's it. The Claw is now registered as an agent in the Nebula Universe. The ag
 
 When a user installs Claw Connect on a Claw, the following happens automatically:
 
-1. The backend detects the app's endpoint matches `CLAW_CONNECT_URL`
-2. It generates a JWT containing the Claw's `bot_id` and `user_id`, signed with `CLAW_CONNECT_JWT_SECRET`
+1. The backend sees the app's `credential_mode` is `platform_jwt`
+2. It generates a JWT containing the Claw's `bot_id` and `user_id`, signed with the secret from the corresponding environment variable (`CLAW_CONNECT_JWT_SECRET`)
 3. The JWT is stored as the app's credential and injected into the MCP connection as a Bearer token
 4. Claw Connect verifies the JWT using the same shared secret, establishing the agent's identity
+5. If the app has lifecycle hooks (discovered via Validate), the backend calls the register endpoint to announce the agent
 
 This means:
 - **Users never see or handle JWT tokens** — the backend manages credentials transparently
