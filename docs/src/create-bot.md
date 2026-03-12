@@ -66,7 +66,7 @@ Click **Advanced** to expand these options. Defaults are auto-selected.
 ### Claw Type
 
 - What it is: runtime isolation mode for this Claw.
-- Default: `shared` (recommended).
+- Default: `standard` (recommended).
 - Other modes (dedicated) depend on infrastructure configuration.
 
 ### Docker Image Tag

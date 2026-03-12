@@ -6,8 +6,8 @@ ClawUp billing is designed for traceable payment operations and auditability.
 
 | Plan | Isolation | Price | Description |
 |------|-----------|-------|-------------|
-| **Free** | Shared | $0 | 7-day free trial via OpenRouter. No API key needed — the platform provisions one automatically. Model is pre-selected and locked. One Claw per user. Designed for new users to explore the platform. |
-| **Basic** | Shared | $10/month | Managed containers with shared runtime. Bring your own API key. For individual users and lightweight workloads. |
+| **Free** | Standard | $0 | 7-day free trial via OpenRouter. No API key needed — the platform provisions one automatically. Model is pre-selected and locked. One Claw per user. Designed for new users to explore the platform. |
+| **Basic** | Standard | $10/month | Managed containers with standard runtime. Bring your own API key. For individual users and lightweight workloads. |
 | **Pro** | Dedicated (ECS) | $30/month | Dedicated compute instance (ECS 2c4g) per Claw. Compute-level isolation and advanced mode enabled. For growing teams. |
 | **Enterprise** | Confidential (TEE) | Coming Soon | Confidential containers with hardware-level memory encryption. Data is protected during execution — no third party, including the platform operator and cloud provider, can access user data. For organizations with strict compliance and data sovereignty requirements. |
 
