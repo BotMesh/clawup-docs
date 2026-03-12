@@ -11,6 +11,56 @@ ClawUp billing is designed for traceable payment operations and auditability.
 | **Pro** | Dedicated (ECS) | $30/month | Dedicated compute instance (ECS 2c4g) per Claw. Compute-level isolation and advanced mode enabled. For growing teams. |
 | **Enterprise** | Confidential (TEE) | Coming Soon | Confidential containers with hardware-level memory encryption. Data is protected during execution — no third party, including the platform operator and cloud provider, can access user data. For organizations with strict compliance and data sovereignty requirements. |
 
+## Current Billing Strategy
+
+ClawUp uses a **dual-track billing model**:
+
+1. **Subscription cycle charge** (plan fee)
+2. **Usage charge** (compute + storage)
+
+### 1) Subscription Cycle Charge
+
+- Charged per active Claw at cycle boundary.
+- Unit price is `monthly_price` from `backend/plans.json`.
+- Active Claw statuses: `Creating`, `Reconciling`, `Running`.
+- Event type in billing logs: `subscription_cycle_charge`.
+
+Cycle controls:
+
+- `BILLING_CYCLE_DAYS` (default: `1`)
+- `BILLING_REMINDER_DAYS` (default: `7`, clamped to `< cycle_days`)
+
+### 2) Usage Charge (Compute + Storage)
+
+Charged on each billing tick:
+
+- `usage_compute`: running-time cost from `compute_hourly_cents`
+- `usage_storage`: stopped backup-size cost from `storage_gb_hourly_cents`
+
+Tick control:
+
+- `BILLING_TICK_SECONDS` (default: `3600`)
+
+Storage metering note:
+
+- Storage charging applies when a Claw is `Stopped` and backup size is known.
+- On stop, backend reads latest OpenClaw backup size (or falls back to last known size) to update storage meter baseline.
+
+### Monthly Usage Cap
+
+- `monthly_cap_cents` is enforced **per Claw** on **usage charges** (`usage_compute + usage_storage`).
+- Subscription cycle fee is separate from this cap.
+
+## Billing Events You Should Expect
+
+- `bot_create_requested` (create request logged; no immediate monetary charge)
+- `usage_compute`
+- `usage_storage`
+- `subscription_due_soon`
+- `subscription_cycle_charge`
+- `subscription_overdue`
+- `bot_auto_stopped_overdue`
+
 ### Free Plan Details
 
 - Available to all new accounts immediately — no payment required.
