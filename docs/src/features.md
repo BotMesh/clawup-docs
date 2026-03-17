@@ -60,7 +60,7 @@ ClawUp offers four plans with increasing levels of runtime isolation:
 |------|-----------|-------|-------------|
 | **Free** | Standard | $0 | 7-day free trial via OpenRouter. No API key needed — the platform provisions one automatically. Model is pre-selected and locked. One Claw per user. |
 | **Basic** | Standard | $10/month | Managed containers with standard runtime. Bring your own API key. Suitable for individual users and lightweight workloads. |
-| **Pro** | Dedicated (ECS 2c4g) | $30/month | Dedicated compute instance per Claw. Compute-level isolation and advanced mode enabled. For growing teams needing stronger separation. |
+| **Pro** | Standard | Coming Soon | Higher token quota, richer Persona library, priority support. Advanced mode enabled. For power users needing more capabilities. |
 | **Enterprise** | Confidential (TEE) | Coming Soon | **Confidential container** with hardware-level memory encryption. Data is protected during execution — no third party, including the platform operator and cloud provider, can access user data, conversation content, or credentials. For organizations with strict compliance and data sovereignty requirements. |
 
 All plans share the same storage security guarantee: any user information written to disk is encrypted.
