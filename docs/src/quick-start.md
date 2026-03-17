@@ -6,7 +6,7 @@ This guide covers three steps:
 
 1. **Create Your Claw for Free** — deploy an AI assistant in seconds
 2. **Pair Your Channel** — connect Telegram or Feishu and start talking
-3. **Explore Apps** — add tools and skills to make it smarter
+3. **Explore Tools** — add tools and skills to make it smarter
 
 ## Prerequisites
 
@@ -134,21 +134,21 @@ Now that your Claw is running and a channel is set, complete the pairing process
 
 ---
 
-## Step 3: Explore Apps
+## Step 3: Explore Tools
 
-Make your Claw smarter by installing apps from the Marketplace.
+Make your Claw smarter by installing tools from the Marketplace.
 
-1. Click **Apps** in the left sidebar → you'll see the **Marketplace** tab
-2. Find an app you want (e.g., **claw-connect** for agent-to-agent communication)
+1. Click **Tools** in the left sidebar → you'll see the **Marketplace** tab
+2. Find a tool you want (e.g., **claw-connect** for agent-to-agent communication)
 3. Click **Add to Claw**, select which Claw to install it on
-4. If the app requires an API key, enter it when prompted
-5. The app is now active — your Claw can use its capabilities!
+4. If the tool requires an API key, enter it when prompted
+5. The tool is now active — your Claw can use its capabilities!
 
-![App marketplace](./images/quick-start/02.png)
+![Tool marketplace](./images/quick-start/02.png)
 
-To manage installed apps, switch to the **Installed** tab where you can view, configure, or remove apps.
+To manage installed tools, switch to the **Installed** tab where you can view, configure, or remove tools.
 
-![Installed apps](./images/quick-start/06.png)
+![Installed tools](./images/quick-start/06.png)
 
 ---
 

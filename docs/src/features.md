@@ -16,14 +16,14 @@ You can create a new Claw from an existing backup/version to reuse prior state a
 - Value: rapid cloning for experimentation, staged rollout, or recovery.
 - Entry: set **Restore Source = Fork From Existing Claw** in the create flow.
 
-## 3. Unified App Model (MCP + OpenClaw Hooks)
+## 3. Unified Tool Model (MCP + OpenClaw Hooks)
 
-ClawUp uses one App model to manage two kinds of OpenClaw extensions: MCP tools (agent-invoked capabilities) and OpenClaw Hooks (event-driven automation scripts). Both are registered, validated, and installed through the same workflow.
+ClawUp uses one Tool model to manage two kinds of OpenClaw extensions: MCP tools (agent-invoked capabilities) and OpenClaw Hooks (event-driven automation scripts). Both are registered, validated, and installed through the same workflow.
 
 - Value: consistent install and management experience across integration types.
 - Entry:
-  - Admin: **Settings -> App Registry**
-  - User: **Apps -> Marketplace / Installed**
+  - Admin: **Settings -> Tool Registry**
+  - User: **Tools -> Marketplace / Installed**
 
 ## 4. Multi-Channel Support (Telegram, Feishu)
 
@@ -31,7 +31,7 @@ ClawUp supports multiple messaging channels out of the box. Select channels duri
 
 - Supported: Telegram (Bot Token), Feishu (App ID + App Secret).
 - Value: connect your Claw to users on their preferred platform with minimal setup.
-- Entry: channel selection in **Create Claw**; for Telegram, webhook resync in **Apps -> Installed**.
+- Entry: channel selection in **Create Claw**; for Telegram, webhook resync in **Tools -> Installed**.
 
 ## 5. Traceable Billing and Audits
 
@@ -50,7 +50,7 @@ ClawUp is designed around privacy-first operations.
   - **Encryption at rest**: all user information written to disk is encrypted — including channel credentials, conversation data, and runtime state
   - Full audit coverage for all Claw operations
   - **Confidential computing (Enterprise)**: the Enterprise plan runs Claws inside confidential containers (TEE — Trusted Execution Environment). Data in memory is hardware-encrypted during execution, ensuring that no third party — including the platform operator, cloud provider, or infrastructure administrator — can access user data. See [Plans & Isolation](#plans--isolation) below.
-- Entry: platform default behavior and runtime/app configuration.
+- Entry: platform default behavior and runtime/tool configuration.
 
 ## 7. Plans & Isolation
 
@@ -68,5 +68,5 @@ All plans share the same storage security guarantee: any user information writte
 ## Related Guides
 
 - For a fast onboarding path, see [Quick Start](./quick-start.md).
-- For integration details, see [Apps & Channels](./apps-and-webhooks.md).
+- For integration details, see [Tools & Channels](./apps-and-webhooks.md).
 - For restore workflows, see [Restore & Migration](./restore-and-migration.md).

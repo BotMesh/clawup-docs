@@ -16,16 +16,16 @@ Add model credentials first, then switch in chat or channel.
 
 Two steps:
 
-1. Open **Apps -> Marketplace**
-2. Install/bind app to your Claw
+1. Open **Tools -> Marketplace**
+2. Install/bind tool to your Claw
 
-Then manage binding in **Apps -> Installed**.
+Then manage binding in **Tools -> Installed**.
 
-If an app is missing in Marketplace, contact your node admin to publish/enable it in **Settings -> App Registry**.
+If a tool is missing in Marketplace, contact your node admin to publish/enable it in **Settings -> Tool Registry**.
 
 ## Telegram channel is not receiving updates. What should I do?
 
-1. Open **Apps -> Installed**
+1. Open **Tools -> Installed**
 2. Click **Resync Webhook** on your Telegram channel
 3. Verify backend env has:
    - `TELEGRAM_COUPON_BOT_TOKEN`
