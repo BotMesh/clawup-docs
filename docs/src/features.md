@@ -1,4 +1,7 @@
-# Features
+---
+title: Features
+description: Core product capabilities of ClawUp
+---
 
 This chapter introduces ClawUp's core product capabilities and where to use them in the console.
 
@@ -33,14 +36,21 @@ ClawUp supports multiple messaging channels out of the box. Select channels duri
 - Value: connect your Claw to users on their preferred platform with minimal setup.
 - Entry: channel selection in **Create Claw**; for Telegram, webhook resync in **Tools -> Installed**.
 
-## 5. Traceable Billing and Audits
+## 5. Multi-Agent Teams
+
+ClawUp lets you create Teams — groups of Claws that work together as a coordinated unit. Each team member has a defined role and persona, and the platform handles all networking automatically.
+
+- Value: build multi-agent workflows without manual setup. Choose from built-in templates (Research Team, Software Company, Data Analysis, Investment Analysis) or describe your needs and let AI generate the team structure.
+- Entry: **Teams** in the left sidebar.
+
+## 6. Traceable Billing and Audits
 
 Billing actions and operational events are designed to be traceable through logs and audits.
 
 - Value: clearer financial and operational accountability.
 - Entry: **Billing** and audit views in the console.
 
-## 6. Privacy-First Defaults
+## 7. Privacy-First Defaults
 
 ClawUp is designed around privacy-first operations.
 
@@ -52,7 +62,7 @@ ClawUp is designed around privacy-first operations.
   - **Confidential computing (Enterprise)**: the Enterprise plan runs Claws inside confidential containers (TEE — Trusted Execution Environment). Data in memory is hardware-encrypted during execution, ensuring that no third party — including the platform operator, cloud provider, or infrastructure administrator — can access user data. See [Plans & Isolation](#plans--isolation) below.
 - Entry: platform default behavior and runtime/tool configuration.
 
-## 7. Plans & Isolation
+## 8. Plans & Isolation
 
 ClawUp offers four plans with increasing levels of runtime isolation:
 

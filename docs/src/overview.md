@@ -1,4 +1,7 @@
-# Overview
+---
+title: Overview
+description: Introduction to the ClawUp managed OpenClaw platform
+---
 
 ClawUp is a managed OpenClaw platform focused on:
 
@@ -6,13 +9,15 @@ ClawUp is a managed OpenClaw platform focused on:
 - Claw memory inheritance (`Fork From`)
 - Tool-based extensibility (MCP + OpenClaw Hooks)
 - Multi-channel support (Telegram, Feishu)
+- Multi-agent Teams — create coordinated groups of Claws from templates or AI generation
 - Privacy-first and trust operations (zero data retention, all user data encrypted at rest, full audit coverage; Enterprise plan adds confidential containers with hardware-level memory encryption — no third party can access user data)
 
 Core management surfaces:
 
+- **Agent -> Teams**: create and manage multi-agent teams
+- **Agent -> Tools -> Marketplace / Installed** (user): bind tools to Claws and manage lifecycle
+- **Account -> Billing / Logs / Quests**: recharge, operational traceability, and rewards
 - **Settings -> Tool Registry** (admin): register MCP / OpenClaw Hooks tools
-- **Tools -> Marketplace / Installed** (user): bind tools to Claws and manage lifecycle
-- **Billing / Audits**: recharge and operational traceability
 
 Terminology:
 

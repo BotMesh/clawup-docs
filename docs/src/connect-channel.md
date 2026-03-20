@@ -1,4 +1,7 @@
-# Connect Channel
+---
+title: Connect Channel
+description: Connect Telegram and Feishu to your Claw
+---
 
 This guide walks you through connecting Telegram and Feishu to your Claw on ClawUp. After completing these steps, your AI assistant will be able to receive and reply to messages on the connected platform.
 

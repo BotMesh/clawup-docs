@@ -1,0 +1,70 @@
+{
+  "$schema": "https://mintlify.com/schema.json",
+  "name": "ClawUp Docs",
+  "logo": {
+    "dark": "/logo/dark.svg",
+    "light": "/logo/light.svg"
+  },
+  "favicon": "/favicon.svg",
+  "colors": {
+    "primary": "#f97066",
+    "light": "#ff8f85",
+    "dark": "#e05a50",
+    "anchors": {
+      "from": "#f97066",
+      "to": "#e05a50"
+    }
+  },
+  "topbarLinks": [
+    {
+      "name": "Console",
+      "url": "https://app.clawup.org"
+    }
+  ],
+  "topbarCtaButton": {
+    "name": "Get Started",
+    "url": "https://app.clawup.org"
+  },
+  "anchors": [
+    {
+      "name": "GitHub",
+      "icon": "github",
+      "url": "https://github.com/BotMesh"
+    }
+  ],
+  "navigation": [
+    {
+      "group": "Getting Started",
+      "pages": [
+        "src/overview",
+        "src/features",
+        "src/quick-start"
+      ]
+    },
+    {
+      "group": "Guides",
+      "pages": [
+        "src/connect-channel",
+        "src/teams",
+        "src/billing",
+        "src/restore-and-migration"
+      ]
+    },
+    {
+      "group": "Advanced",
+      "pages": [
+        "src/claw-connect"
+      ]
+    },
+    {
+      "group": "Support",
+      "pages": [
+        "src/faq"
+      ]
+    }
+  ],
+  "footerSocials": {
+    "x": "https://x.com/clawup",
+    "github": "https://github.com/BotMesh"
+  }
+}

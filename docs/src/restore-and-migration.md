@@ -1,4 +1,7 @@
-# Restore & Migration
+---
+title: Restore & Migration
+description: Fork, restore, and migrate Claw data
+---
 
 ## Fork From Existing Claw
 

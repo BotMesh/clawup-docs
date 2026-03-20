@@ -1,4 +1,7 @@
-# Billing
+---
+title: Billing
+description: Plans, payments, and credit management
+---
 
 ClawUp billing is designed for traceable payment operations and auditability.
 
@@ -75,6 +78,12 @@ Storage metering note:
 - Stripe recharge
 - Recharge card
 - x402-based crypto payment
+
+## Team Billing
+
+When you create a [Team](./teams.md), each team member is a separate Claw. The total team cost equals the number of members multiplied by the per-Claw rate. For example, a 4-member team on the Basic plan costs 4 x $10/month in subscription fees, plus individual usage charges for each member.
+
+Make sure your account balance can cover all team members before creating a team.
 
 ## Traceability and Audit
 

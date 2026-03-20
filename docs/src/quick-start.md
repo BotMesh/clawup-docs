@@ -1,4 +1,7 @@
-# Quick Start
+---
+title: Quick Start
+description: Get your first Claw running in minutes
+---
 
 Welcome to ClawUp — the fastest way to deploy your own AI assistant. No servers to manage, no complex setup. Just sign up, create your Claw, connect a messaging channel, and start chatting.
 
@@ -168,6 +171,7 @@ To manage installed tools, switch to the **Installed** tab where you can view, c
 ## What's Next?
 
 - Customize your Claw's personality by editing its system prompt
+- **Create a Team** — go to **Teams** in the left sidebar to build a multi-agent group from templates or AI generation. See [Teams](./teams.md) for details.
 - Set up scheduled tasks with cron jobs
 - Upgrade to a paid plan for more models, dedicated compute, and advanced features
 - Join the ClawUp community on Telegram: [@clawup](https://t.me/clawup)

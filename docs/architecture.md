@@ -65,9 +65,11 @@ Responsibilities:
 
 Key behavior:
 
-1. Snapshot persistence loop writes store state every 5s.
+1. Snapshot persistence loop writes store state every 30s.
 2. Reconcile loops sync runtime state and cleanup.
 3. For running bots, chat/channel endpoints proxy or query runtime gateway.
+4. Dual-write: every AppStore mutation also fires an immediate MySQL write via `db_write::spawn_db_write()`. The batch sync remains as a safety net.
+5. SQL migrations in `backend/migrations/` run automatically on startup via `migrate::run_migrations()`. Tracks applied versions in `_migrations` table.
 
 Entry point:
 - `backend/src/main.rs`
@@ -106,6 +108,20 @@ Responsibilities:
 1. Agent-to-agent communication and JWT-authenticated bridging.
 2. Uses backend + MySQL + Redis.
 3. Supports Nebula Telegram sync related flows.
+4. Internal discovery API: `GET /api/internal/bots/{id}/runtime` (secured by `INTERNAL_API_SECRET`).
+5. Runtime token cache (60s TTL) via `AppState.runtime_cache` (DashMap).
+
+## 3.6 Teams
+
+Responsibilities:
+
+1. Team CRUD — create, list, update, delete bot teams.
+2. AI-powered team generation using rig-core (multi-provider LLM abstraction: OpenAI, Anthropic, OpenRouter).
+3. Auto-networking — team bots are automatically connected via Claw Connect.
+4. Built-in templates in `backend/team_templates.json`.
+
+Reference:
+- `backend/src/handlers/teams.rs`
 
 ## 4. Data and State
 
