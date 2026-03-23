@@ -1,102 +1,124 @@
 ---
 title: Billing
-description: Plans, payments, and credit management
+description: Plans, pricing model, and credit management
 ---
 
-ClawUp billing is designed for traceable payment operations and auditability.
+ClawUp billing is designed for transparent, usage-based pricing with full traceability.
 
 ## Plans
 
 | Plan | Isolation | Price | Description |
 |------|-----------|-------|-------------|
-| **Free** | Standard | $0 | 7-day free trial via OpenRouter. No API key needed — the platform provisions one automatically. Model is pre-selected and locked. One Claw per user. Designed for new users to explore the platform. |
-| **Basic** | Standard | $10/month | Managed containers with standard runtime. Bring your own API key. For individual users and lightweight workloads. |
-| **Pro** | Standard | Coming Soon | Higher token quota, richer Persona library, priority support. Advanced mode enabled. For power users needing more capabilities. |
-| **Enterprise** | Confidential (TEE) | Coming Soon | Confidential containers with hardware-level memory encryption. Data is protected during execution — no third party, including the platform operator and cloud provider, can access user data. For organizations with strict compliance and data sovereignty requirements. |
+| **Basic** | Standard | $20/month | Managed containers with standard runtime. Per-hour compute billing — pay only when your Claw is running. Bring your own API key or purchase a token package. |
+| **Pro** | Standard | Coming Soon | Priority support, advanced features, higher concurrency limits. |
+| **Enterprise** | Confidential (TEE) | Coming Soon | Confidential containers with hardware-level memory encryption. No third party can access user data during execution. For organizations with strict compliance requirements. |
 
-## Current Billing Strategy
+## Pricing Model
 
-ClawUp uses a **dual-track billing model**:
+ClawUp uses a **two-component billing model**:
 
-1. **Subscription cycle charge** (plan fee)
-2. **Usage charge** (compute + storage)
+### 1) Infrastructure Fee (Compute + Storage)
 
-### 1) Subscription Cycle Charge
+**Compute**: billed per-hour when your Claw is **running**.
 
-- Charged per active Claw at cycle boundary.
-- Unit price is `monthly_price` from `backend/plans.json`.
-- Active Claw statuses: `Creating`, `Reconciling`, `Running`.
-- Event type in billing logs: `subscription_cycle_charge`.
+- $20/month = ~$0.028/hour (30 days)
+- When you stop your Claw, compute billing stops immediately
+- When you restart, compute billing resumes
 
-Cycle controls:
+**Storage**: a baseline fee of **$5–10/month** for persistent data (workspace, backups, configuration).
 
-- `BILLING_CYCLE_DAYS` (default: `1`)
-- `BILLING_REMINDER_DAYS` (default: `7`, clamped to `< cycle_days`)
+- Charged regardless of whether the Claw is running or stopped
+- Storage billing stops only when the Claw is **deleted**
 
-### 2) Usage Charge (Compute + Storage)
+### 2) Token Fee
 
-Charged on each billing tick:
+Token usage is billed separately from infrastructure:
 
-- `usage_compute`: running-time cost from `compute_hourly_cents`
-- `usage_storage`: stopped backup-size cost from `storage_gb_hourly_cents`
+- **Bring your own key**: use your own API key (OpenAI, Anthropic, etc.) — no token fee from ClawUp
+- **Purchase token packages**: buy tokens through ClawUp at cost + 20% markup
+- You select the model and decide how much to spend on tokens
 
-Tick control:
+### What happens at creation
 
-- `BILLING_TICK_SECONDS` (default: `3600`)
+When you click **Create Claw**, the following is deducted from your balance:
 
-Storage metering note:
+- Minimum balance required: **$20**
+- This reserves the first billing cycle (infrastructure + storage)
 
-- Storage charging applies when a Claw is `Stopped` and backup size is known.
-- On stop, backend reads latest OpenClaw backup size (or falls back to last known size) to update storage meter baseline.
+No token fee is deducted at creation — tokens are billed as you use them (if using ClawUp-provided tokens).
 
-### Monthly Usage Cap
+## Billing Cycle
 
-- `monthly_cap_cents` is enforced **per Claw** on **usage charges** (`usage_compute + usage_storage`).
-- Subscription cycle fee is separate from this cap.
+| Event | Timing |
+|-------|--------|
+| **Daily usage tick** | Every 24 hours: compute hours × hourly rate + storage usage |
+| **Low balance warning** | Email sent when balance covers **< 7 days** of estimated usage |
+| **Critical warning** | Email sent when balance covers **< 3 days** |
+| **Auto-stop** | When balance reaches **$0**: all running Claws are stopped automatically |
+| **Storage cleanup** | **14 days** after auto-stop with no top-up: storage is deleted |
 
-## Billing Events You Should Expect
+### Billing Tick Details
 
-- `bot_create_requested` (create request logged; no immediate monetary charge)
-- `usage_compute`
-- `usage_storage`
-- `subscription_due_soon`
-- `subscription_cycle_charge`
-- `subscription_overdue`
-- `bot_auto_stopped_overdue`
+The billing system runs periodically (configurable via `BILLING_TICK_SECONDS`, default: `86400` = daily) and performs:
 
-### Free Plan Details
+1. **Estimate daily burn rate** per user: sum of compute costs for all running Claws + storage costs for all stopped Claws
+2. **Calculate days remaining**: `balance / daily_burn`
+3. **Take action** based on remaining days:
+   - `> 7 days`: healthy, no action
+   - `3–7 days`: send low-balance reminder email
+   - `1–3 days`: send critical warning email
+   - `≤ 0 days`: auto-stop all running Claws, mark user as overdue
 
-- Available to all new accounts immediately — no payment required.
-- The platform provisions an OpenRouter API key for you automatically.
-- Model is fixed (not user-selectable) and the model picker is disabled.
-- The provisioned key and associated resources are cleaned up when the Claw is deleted.
-- After the trial period, upgrade to Basic or higher to continue.
+### Auto-Recovery
 
-## Recharge Methods
-
-- Telegram channel coupon
-- Stripe recharge
-- Recharge card
-- x402-based crypto payment
+If a user tops up while in overdue status:
+- Overdue status is cleared automatically on the next billing tick
+- Claws can be restarted manually
+- No data is lost during the 14-day grace period
 
 ## Team Billing
 
-When you create a [Team](./teams.md), each team member is a separate Claw. The total team cost equals the number of members multiplied by the per-Claw rate. For example, a 4-member team on the Basic plan costs 4 x $10/month in subscription fees, plus individual usage charges for each member.
+| Team Mode | Cost |
+|-----------|------|
+| **SubAgent** | **1 Claw** — only the leader container is billed. All sub-agent sessions run in-process. |
+| **MultiAgent** | **N Claws** — each team member is a separate container, billed individually. |
+
+Example: a 4-role team on Basic plan:
+- SubAgent mode: $20/month (1 container)
+- MultiAgent mode: $80/month (4 containers)
 
 Make sure your account balance can cover all team members before creating a team.
 
+## Recharge Methods
+
+| Method | Description |
+|--------|-------------|
+| **Stripe** | Credit card payment via Stripe checkout. Live and sandbox modes supported. |
+| **Recharge Card** | Pre-paid code + password. Enter in **Billing & Funds**. |
+| **Telegram Coupon** | Claim a coupon through the ClawUp Telegram bot for promotional credit. |
+| **x402 Crypto** | On-chain payment with USDC/USDT across multiple chains (ERC20 direct transfer). |
+
+## Billing Events
+
+All billing actions are recorded in the audit log:
+
+| Event | Description |
+|-------|-------------|
+| `usage_compute` | Hourly compute charge for a running Claw |
+| `usage_storage` | Storage charge for a stopped Claw with backup data |
+| `subscription_due_soon` | Low-balance reminder sent |
+| `balance_exhausted` | Balance reached zero, auto-stop triggered |
+| `bot_auto_stopped_overdue` | Claw stopped due to insufficient balance |
+| `billing_overdue_cleared` | User topped up, overdue status removed |
+
 ## Traceability and Audit
 
-All billing-related actions are traceable through billing records and audit logs.
+- All recharge events are recorded with timestamps and payment channel details
+- Balance changes are traceable through billing logs
+- Claw operations can be correlated through audit entries
+- Open **Billing & Funds** to view current balance, recharge history, and usage
 
-- Recharge creation and completion events are recorded.
-- Balance changes are recorded with timestamps.
-- Related Claw operations can be correlated through audit entries.
+## Related Guides
 
-## Recommended Check Path
-
-1. Open **Billing** to confirm recharge and balance status.
-2. Open audit views to trace the related operation timeline.
-3. If there is a mismatch, verify payment channel details and request IDs.
-
-For x402 crypto payment integration and end-to-end validation, see `docs/x402-e2e-testing.md` in the repository.
+- For team pricing details, see [Teams](./teams.md)
+- For x402 crypto payment testing, see `docs/x402-e2e-testing.md` in the repository

@@ -65,11 +65,12 @@ Responsibilities:
 
 Key behavior:
 
-1. Snapshot persistence loop writes store state every 30s.
-2. Reconcile loops sync runtime state and cleanup.
+1. MySQL is the sole source of truth — all reads via `db_query.rs`, all writes via `db_write.rs`.
+2. Background loops (reconcile, billing, team networking) use MySQL advisory locks (`GET_LOCK`) for leader election across replicas.
 3. For running bots, chat/channel endpoints proxy or query runtime gateway.
-4. Dual-write: every AppStore mutation also fires an immediate MySQL write via `db_write::spawn_db_write()`. The batch sync remains as a safety net.
+4. Writes use `db_write::spawn_db_write()` with retry (3 attempts, exponential backoff). There is no batch sync fallback — persistent failures are logged as data loss.
 5. SQL migrations in `backend/migrations/` run automatically on startup via `migrate::run_migrations()`. Tracks applied versions in `_migrations` table.
+6. Rate limiting (auth, chat, bot creation) is Redis-backed via `SessionStore::rate_check()` for horizontal scaling.
 
 Entry point:
 - `backend/src/main.rs`
@@ -108,7 +109,7 @@ Responsibilities:
 1. Agent-to-agent communication and JWT-authenticated bridging.
 2. Uses backend + MySQL + Redis.
 3. Supports Nebula Telegram sync related flows.
-4. Internal discovery API: `GET /api/internal/bots/{id}/runtime` (secured by `INTERNAL_API_SECRET`).
+4. Internal discovery API: `GET /api/internal/bots/{id}/runtime` (secured by `RUNTIME_API_SECRET`).
 5. Runtime token cache (60s TTL) via `AppState.runtime_cache` (DashMap).
 
 ## 3.6 Teams
@@ -142,7 +143,7 @@ Current implementation details (important):
 1. `app_store_snapshots` and `bot_runtime_credentials` payloads are encrypted via ChaCha20-Poly1305 envelope.
 2. Encryption key is derived from `APP_STORE_SNAPSHOT_KEY`, fallback to `MYSQL_PASSWORD`.
 3. `BOT_LOCAL_CONFIG_KEY_ID` is a key label/identifier field.
-4. `bot_local_configs.encrypted_config` currently stores JSON payload directly (legacy compatibility path), while key-id and nonce fields are still written.
+4. `bot_local_configs.encrypted_config` is now encrypted via ChaCha20-Poly1305 (same as `bot_runtime_credentials`). Legacy plaintext rows are decrypted transparently and re-encrypted on next write.
 
 Reference:
 - `backend/src/integrations/local_config.rs`
