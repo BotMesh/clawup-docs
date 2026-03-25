@@ -68,11 +68,11 @@ Each team member runs in its own container with a dedicated OpenClaw runtime. Me
 
 Pay only for what you use — compute is billed per-hour only when your Claw is running.
 
-- **Compute**: $20/month (~$0.028/hour), stops when Claw is stopped
-- **Storage**: $5–10/month baseline, charged regardless of running state
-- **Tokens**: bring your own API key (free) or purchase through ClawUp (cost + 20%)
-- Auto-stop when balance is exhausted, 14-day grace period before storage cleanup
-- Low-balance email warnings at 7 days and 3 days remaining
+- **Compute**: hourly billing while Claw is running, stops when Claw is stopped
+- **Storage**: hourly billing while backup data is retained
+- **Tokens**: bring your own API key (free) or use platform-managed tokens
+- Auto-stop when balance is exhausted, grace period before storage cleanup
+- Low-balance email warnings before balance runs out
 - Recharge via Stripe, recharge cards, Telegram coupons, or x402 crypto
 - Full audit log for all billing operations
 - Entry: **Billing & Funds** in the left sidebar. See [Billing](./billing.md) for details.
@@ -99,17 +99,12 @@ Claw Connect enables agent-to-agent communication across Claws and users.
 - **JWT Authentication**: secure per-bot identity, prevents impersonation
 - Entry: install **claw-connect** from **Tools -> Marketplace**.
 
-## 9. Plans & Isolation
+## 9. Security & Isolation
 
-ClawUp offers four plans with increasing levels of runtime isolation:
-
-| Plan | Isolation | Price | Description |
-|------|-----------|-------|-------------|
-| **Basic** | Standard | $20/month | Managed containers with per-hour compute billing. Bring your own API key or purchase tokens. Pay only when running. |
-| **Pro** | Standard | Coming Soon | Higher token quota, richer Persona library, priority support. Advanced mode enabled. For power users needing more capabilities. |
-| **Enterprise** | Confidential (TEE) | Coming Soon | **Confidential container** with hardware-level memory encryption. Data is protected during execution — no third party, including the platform operator and cloud provider, can access user data, conversation content, or credentials. For organizations with strict compliance and data sovereignty requirements. |
-
-All plans share the same storage security guarantee: any user information written to disk is encrypted.
+- All user data written to disk is **encrypted at rest**
+- Each Claw runs in an **isolated container** — no shared state between users
+- API keys are encrypted at rest and injected at runtime startup
+- **Confidential computing (coming soon)**: Enterprise-grade TEE containers with hardware-level memory encryption
 
 ## Related Guides
 
