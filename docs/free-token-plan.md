@@ -181,7 +181,7 @@ SKYAPI_BASE_URL=https://api.skyapi.org
 
 # Common
 FREE_CREDIT_USD=1.0                      # Free credit in USD (SkyAPI quota = USD * 1M)
-FREE_TIER_DEFAULT_MODEL=openai/gpt-5.4   # Default model for free-tier (display as openai/*)
+FREE_TIER_DEFAULT_MODEL=gemini-2.5-flash  # Default model for free-tier
 FREE_TRIAL_MINUTES=10080                 # 7 days
 ```
 
