@@ -48,7 +48,6 @@
         "src/connect-channel",
         "src/teams",
         "src/billing",
-        "src/billing-zh",
         "src/restore-and-migration"
       ]
     },
