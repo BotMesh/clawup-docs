@@ -39,15 +39,15 @@ Before you begin, make sure you have:
 
 ### 1.2 Start Free Plan
 
-1. In the left sidebar, click **Plans**
-2. Find the **Free** card — it says "Free 7 days" with $1 free credit
+1. In the left sidebar, click **Billing**
+2. Find the **Free** card — it says "Free 7 days" with free credit
 3. Click **Start Free**
 
 What you get with the Free plan:
 
 - 7-day free trial
 - $1 free credit included
-- Pre-configured AI model (Qwen 3.5 Flash) — no API key needed
+- Pre-configured AI model (Gemini 2.5 Flash) — no API key needed
 - Shared runtime environment
 
 ![Plans page](./images/quick-start/05.png)
@@ -55,7 +55,7 @@ What you get with the Free plan:
 ### 1.3 Configure Your Claw
 
 1. **Name** — give your Claw a name (e.g., `my-assistant`)
-2. **Model** — already pre-selected for the Free plan (Qwen 3.5 Flash via OpenRouter). For paid plans, use the searchable model picker to choose from OpenAI, Anthropic, Google, etc.
+2. **Model** — already pre-selected for the Free plan (Gemini 2.5 Flash). For paid plans, use the searchable model picker to choose from OpenAI, Anthropic, Google, etc.
 3. **API Key** — **Free plan: not needed** (the platform provisions one automatically). For paid plans, get a key from your provider:
 
    | Provider | API Key Page |
