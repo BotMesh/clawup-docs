@@ -193,5 +193,4 @@ Override via environment variables: `BILLING_TICK_SECONDS`, `BILLING_CYCLE_DAYS`
 
 ## Related Guides
 
-- For team pricing, see [Teams](./teams.md)
-- For x402 crypto payment testing, see `docs/x402-e2e-testing.md` in the repository
+- For team pricing, see [Teams](./teams)
