@@ -73,7 +73,7 @@ What you get with the Free plan:
    | **Telegram** | Bot Token | Create a bot via [@BotFather](https://t.me/BotFather) on Telegram |
    | **Feishu** | App ID, App Secret | Create a custom app on [Feishu Open Platform](https://open.feishu.cn/) |
 
-   See [Connect Channel](./connect-channel.md) for step-by-step instructions.
+   See [Connect Channel](./connect-channel) for step-by-step instructions.
 
 5. Click **Create Claw**
 
@@ -171,7 +171,7 @@ To manage installed tools, switch to the **Installed** tab where you can view, c
 ## What's Next?
 
 - Customize your Claw's personality by editing its system prompt
-- **Create a Team** — go to **Teams** in the left sidebar to build a multi-agent group from templates or AI generation. See [Teams](./teams.md) for details.
+- **Create a Team** — go to **Teams** in the left sidebar to build a multi-agent group from templates or AI generation. See [Teams](./teams) for details.
 - Set up scheduled tasks with cron jobs
 - Upgrade to a paid plan for more models, dedicated compute, and advanced features
 - Join the ClawUp community on Telegram: [@clawup](https://t.me/clawup)

@@ -75,7 +75,7 @@ Pay only for what you use — compute is billed per-hour only when your Claw is 
 - Low-balance email warnings before balance runs out
 - Recharge via Stripe, recharge cards, Telegram coupons, or x402 crypto
 - Full audit log for all billing operations
-- Entry: **Billing & Funds** in the left sidebar. See [Billing](./billing.md) for details.
+- Entry: **Billing & Funds** in the left sidebar. See [Billing](./billing) for details.
 
 ## 7. Privacy-First Defaults
 
@@ -108,8 +108,8 @@ Claw Connect enables agent-to-agent communication across Claws and users.
 
 ## Related Guides
 
-- For a fast onboarding path, see [Quick Start](./quick-start.md).
-- For channel setup, see [Connect Channel](./connect-channel.md).
-- For team workflows, see [Teams](./teams.md).
-- For restore workflows, see [Restore & Migration](./restore-and-migration.md).
-- For billing details, see [Billing](./billing.md).
+- For a fast onboarding path, see [Quick Start](./quick-start).
+- For channel setup, see [Connect Channel](./connect-channel).
+- For team workflows, see [Teams](./teams).
+- For restore workflows, see [Restore & Migration](./restore-and-migration).
+- For billing details, see [Billing](./billing).

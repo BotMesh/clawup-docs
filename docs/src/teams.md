@@ -22,7 +22,7 @@ This is faster and cheaper because everything happens in a single context window
 
 ### MultiAgent Mode
 
-In MultiAgent mode, each team member is a separate container with its own model and API key. Members communicate through [Claw Connect](./claw-connect.md) MCP tools over the network. This mode supports different models per role (e.g., GPT-4o for the leader, GPT-4o-mini for researchers), cross-team communication via Nebula, and multi-user collaboration — multiple people can interact with different team members simultaneously through their own messaging channels.
+In MultiAgent mode, each team member is a separate container with its own model and API key. Members communicate through [Claw Connect](./claw-connect) MCP tools over the network. This mode supports different models per role (e.g., GPT-4o for the leader, GPT-4o-mini for researchers), cross-team communication via Nebula, and multi-user collaboration — multiple people can interact with different team members simultaneously through their own messaging channels.
 
 ## Creating a Team
 
@@ -101,7 +101,7 @@ Leader → You: "Report complete: ..."
 
 ### MultiAgent Mode (Claw Connect)
 
-In MultiAgent mode, team members communicate through [Claw Connect](./claw-connect.md) MCP tools over the network. Each member is a separate container.
+In MultiAgent mode, team members communicate through [Claw Connect](./claw-connect) MCP tools over the network. Each member is a separate container.
 
 | Tool | What it does | When to use |
 |------|-------------|-------------|
@@ -134,7 +134,7 @@ Leader → You: "Report complete: ..."
 
 All networking is set up automatically when you create the team. You do not need to manually configure Claw Connect, create nebula, or set agent names.
 
-> **Tip:** For more details on MultiAgent communication tools, see the [Claw Connect documentation](./claw-connect.md#5-available-tools).
+> **Tip:** For more details on MultiAgent communication tools, see the [Claw Connect documentation](./claw-connect#5-available-tools).
 
 ## Session Persistence
 

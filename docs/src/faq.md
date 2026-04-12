@@ -73,11 +73,11 @@ This means the Feishu app is missing required API permissions. The bot can recei
 
 ## What is a Team?
 
-A Team is a group of Claws that work together as a coordinated unit. Each member has a specific role and persona, and they communicate automatically through Claw Connect. You can create teams from built-in templates (Research Team, Software Company, Data Analysis, Investment Analysis) or describe your needs and let AI generate the team structure. See [Teams](./teams.md) for the full guide.
+A Team is a group of Claws that work together as a coordinated unit. Each member has a specific role and persona, and they communicate automatically through Claw Connect. You can create teams from built-in templates (Research Team, Software Company, Data Analysis, Investment Analysis) or describe your needs and let AI generate the team structure. See [Teams](./teams) for the full guide.
 
 ## How many Claws can a Team have?
 
-There is no fixed limit on team size. The built-in templates range from 3 to 5 members. When using AI Generate, you can request any number of roles. Keep in mind that each member is a separate Claw, so larger teams cost more — see [Billing](./billing.md#team-billing) for details.
+There is no fixed limit on team size. The built-in templates range from 3 to 5 members. When using AI Generate, you can request any number of roles. Keep in mind that each member is a separate Claw, so larger teams cost more — see [Billing](./billing#team-billing) for details.
 
 ## Can I use different models for different team members?
 

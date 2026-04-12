@@ -383,11 +383,11 @@ You are a task coordinator. When you receive a user request:
 4. Combine results and reply to the user
 ```
 
-> **Tip:** For a faster way to set up multi-agent workflows, use [Teams](./teams.md). Teams automate the entire process — creating the Claws, installing Claw Connect, configuring agent names, and setting up the communication network. You can start from a built-in template or let AI generate the team structure for you.
+> **Tip:** For a faster way to set up multi-agent workflows, use [Teams](./teams). Teams automate the entire process — creating the Claws, installing Claw Connect, configuring agent names, and setting up the communication network. You can start from a built-in template or let AI generate the team structure for you.
 
 ### Team Communication
 
-When you create a [Team](./teams.md), Claw Connect is installed automatically on every member. The team leader coordinates other members using MCP tools. Here's how to instruct the leader in Quick Chat:
+When you create a [Team](./teams), Claw Connect is installed automatically on every member. The team leader coordinates other members using MCP tools. Here's how to instruct the leader in Quick Chat:
 
 **List teammates:**
 
