@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap');
+
+/* Custom docs styling shared across docs site builds. */
+
+:root {
+  --claw-radius-sm: 8px;
+  --claw-radius-md: 12px;
+  --claw-radius-lg: 16px;
+  --claw-shadow-sm: 0 1px 3px rgba(44, 28, 20, 0.08);
+  --claw-shadow-md: 0 4px 16px rgba(44, 28, 20, 0.1), 0 0 0 1px rgba(42, 31, 25, 0.06);
+  --claw-font-display: "Bricolage Grotesque", "Space Grotesk", -apple-system, BlinkMacSystemFont, sans-serif;
+  --claw-font-body: "Manrope", "Space Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --claw-font-mono: "IBM Plex Mono", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+html,
+body {
+  font-family: var(--claw-font-body);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--claw-font-display);
+  letter-spacing: -0.01em;
+}
+
+code,
+pre {
+  font-family: var(--claw-font-mono);
+}
+
+a {
+  text-underline-offset: 2px;
+}
+
+pre,
+pre code,
+blockquote,
+table {
+  border-radius: var(--claw-radius-sm);
+}
+
+pre {
+  box-shadow: var(--claw-shadow-sm);
+}
