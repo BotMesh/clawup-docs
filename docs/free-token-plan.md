@@ -154,7 +154,7 @@ pub enum ProviderStrategy {
 
 | Event | Action |
 |-------|--------|
-| User signs up | `POST /api/token/` with `remain_quota = FREE_CREDIT_USD * 1,000,000` |
+| User signs up | `POST /api/token/` with `remain_quota = FREE_CREDITS` |
 | User creates Claw | Inject key + configure `models.providers.openai` pointing to SkyAPI |
 | User checks balance | `GET /api/usage/token/` → show `total_available` |
 | Credits exhausted | Provider rejects (402/429). Frontend shows "top up" prompt |
@@ -180,7 +180,7 @@ SKYAPI_BASE_URL=https://api.skyapi.org
 # OPENROUTER_MANAGEMENT_API_KEY=sk-or-mgmt-...
 
 # Common
-FREE_CREDIT_USD=1.0                      # Free credit in USD (SkyAPI quota = USD * 1M)
+FREE_CREDITS=1000000                     # Free credits (SkyAPI quota units, e.g. 1M)
 FREE_TIER_DEFAULT_MODEL=google/gemini-2.5-flash  # Default model for free-tier (display as google/*)
 FREE_TRIAL_MINUTES=10080                 # 7 days
 ```

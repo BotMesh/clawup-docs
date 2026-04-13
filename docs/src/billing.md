@@ -15,7 +15,7 @@ ClawUp uses **hourly usage-based billing** for both compute and storage:
 
 ### Compute (Running Claws)
 
-- **Rate**: $1.39/hour (~$10 for 30 days continuous)
+- **Rate**: 1.39 cents/hour (~$10 for 30 days continuous)
 - Billed only while your Claw is **Running**
 - Stop your Claw → compute billing stops immediately
 - Restart → compute billing resumes
@@ -23,7 +23,7 @@ ClawUp uses **hourly usage-based billing** for both compute and storage:
 
 ### Storage (All Non-Deleted Claws)
 
-- **Rate**: $0.003 per GB per hour (~$2.16/GB/month)
+- **Rate**: 0.003 cents per GB per hour (~$0.022/GB/month)
 - Billed for **all Claws that have data on disk** — both Running and Stopped
 - Based on actual backup size (workspace, config, conversation data)
 - Delete your Claw → storage billing stops, data is removed
@@ -31,9 +31,30 @@ ClawUp uses **hourly usage-based billing** for both compute and storage:
 
 ### Tokens (LLM API Usage)
 
-- **Bring your own key**: use your own API key (OpenAI, Anthropic, SkyAPI, etc.) — no token fee from ClawUp
-- **Managed tokens**: available for free-tier users via a platform-provisioned API key
-- Token costs are passed through from the LLM provider
+Two modes for AI model access:
+
+- **Bring your own key (BYOK)**: use your own API key (OpenAI, Anthropic, Google, etc.) — no token fee from ClawUp
+- **ClawUp-managed models**: purchase Token Credits from your USD balance and access multiple AI models from a single balance. No API key management required.
+
+#### Token Credits (Managed Mode)
+
+Purchase Token Credits to use ClawUp-managed models. One balance, multiple providers — cheaper than going direct for most models.
+
+| Model | ClawUp Price (in/M) | Direct Price (in/M) | Savings |
+|-------|--------------------|--------------------|---------|
+| Claude Opus 4.6 | $2.50 | $15.00 (Anthropic) | **83%** |
+| Claude Sonnet 4.6 | $1.50 | $3.00 (Anthropic) | **50%** |
+| Claude Sonnet 4.5 | $0.75 | $3.00 (Anthropic) | **75%** |
+| Claude Haiku 4.5 | $0.25 | $1.00 (Anthropic) | **75%** |
+| GPT-5.4 | $0.625 | $2.50 (OpenAI) | **75%** |
+| DeepSeek Chat | competitive | — | — |
+
+Purchase in presets ($10 / $20 / $50) or custom amounts ($1–$500). Credits are non-refundable.
+
+Token Credits can be purchased:
+- During Claw creation (select "Use ClawUp-managed models")
+- From the Overview dashboard ("Buy Token Credits" button)
+- From the Billing panel (top-up anytime)
 
 ### Balance Requirements
 
@@ -64,10 +85,10 @@ The billing system runs every 24 hours and performs:
 ├─────────────────────────────────────────────────────┤
 │  Phase 1: Calculate Charges                         │
 │  Running bots → compute + storage                   │
-│    compute: hours × $1.39/hr                        │
-│    storage: hours × GB × $0.003/hr                  │
+│    compute: hours × 1.39 cents/hr                   │
+│    storage: hours × GB × 0.003 cents/hr             │
 │  Stopped bots → storage only                        │
-│    storage: hours × GB × $0.003/hr                  │
+│    storage: hours × GB × 0.003 cents/hr             │
 │  All charges capped at $10/month per Claw           │
 ├─────────────────────────────────────────────────────┤
 │  Phase 2: Apply Charges                             │
